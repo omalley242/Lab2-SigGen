@@ -27,6 +27,7 @@ int main(int argc, char **argv, char **env) {
 
   // initialize simulation input 
   top->clk = 1;
+  top->en = 0;
   top->rst = 0;
   top->wr = 1;
   top->rd = 1;
@@ -51,6 +52,7 @@ int main(int argc, char **argv, char **env) {
     vbdPlot(int (top->delayed_signal), 0, 255);
     vbdCycle(simcyc);
 
+    top->en = vbdFlag();
     // either simulation finished, or 'q' is pressed
     if ((Verilated::gotFinish()) || (vbdGetkey()=='q')) 
       exit(0);
